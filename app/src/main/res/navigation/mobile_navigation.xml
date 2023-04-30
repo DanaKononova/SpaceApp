@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_start">
+
+    <fragment
+        android:id="@+id/navigation_start"
+        android:name="com.example.spaceapp.ui.start.StartFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_start" />
+
+    <fragment
+        android:id="@+id/navigation_earth"
+        android:name="com.example.spaceapp.ui.earth.EarthFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_earth" />
+
+    <fragment
+        android:id="@+id/navigation_tracks"
+        android:name="com.example.spaceapp.ui.tracks.TracksFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_tracks" />
+</navigation>

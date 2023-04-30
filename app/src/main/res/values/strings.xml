@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">SpaceApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="day_picture_tv">Picture of a Day</string>
+    <string name="navigation_start">start</string>
+    <string name="navigation_earth">earth</string>
+    <string name="navigation_tracks">tracks</string>
+
 </resources>

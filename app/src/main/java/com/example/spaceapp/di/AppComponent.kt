@@ -5,6 +5,7 @@ import com.example.spaceapp.di.modules.NetworkModule
 import com.example.spaceapp.di.modules.RepositoryModule
 import com.example.spaceapp.di.modules.SourceModule
 import com.example.spaceapp.di.modules.ViewModelModule
+import com.example.spaceapp.ui.earth.EarthFragment
 import com.example.spaceapp.ui.start.StartFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -21,4 +22,7 @@ interface AppComponent {
     }
 
     fun inject(fragment: StartFragment)
+
+    fun inject(fragment: EarthFragment)
+
 }

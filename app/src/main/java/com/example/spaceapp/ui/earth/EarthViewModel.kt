@@ -1,13 +1,11 @@
 package com.example.spaceapp.ui.earth
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.spaceapp.domain.Repository
+import javax.inject.Inject
 
-class EarthViewModel : ViewModel() {
+class EarthViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = ""
-    }
-    val text: LiveData<String> = _text
 }

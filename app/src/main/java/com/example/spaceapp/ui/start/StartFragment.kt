@@ -1,32 +1,58 @@
 package com.example.spaceapp.ui.start
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.example.spaceapp.SpaceApp
 import com.example.spaceapp.databinding.FragmentStartBinding
+import com.example.spaceapp.di.ViewModelFactory
+import com.github.chrisbanes.photoview.PhotoViewAttacher
+import javax.inject.Inject
 
 class StartFragment : Fragment() {
 
     private var _binding: FragmentStartBinding? = null
-
     private val binding get() = _binding!!
 
+    @Inject
+    lateinit var factory: ViewModelFactory
+    private val viewModel: StartViewModel by viewModels { factory }
+
+    override fun onAttach(context: Context) {
+        (activity?.applicationContext as SpaceApp).appComponent.inject(this)
+        super.onAttach(context)
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val startViewModel =
-            ViewModelProvider(this).get(StartViewModel::class.java)
-
         _binding = FragmentStartBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        return root
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val photoView = binding.DayPictureImg
+
+        val attacher = PhotoViewAttacher(photoView)
+        attacher.isZoomable = true
+
+        viewModel.dayPictureLiveData.observe(viewLifecycleOwner){
+            Glide
+                .with(view)
+                .load(it.url)
+                .into(binding.DayPictureImg)
+            binding.PictureTitleTv.text = it.title
+            binding.PictureDateTv.text = it.data
+            binding.PictureExplanationTv.text = it.explanation
+        }
+
+        viewModel.getDayPicture()
+        viewModel.setToken("quGv1lODdLOb0ylZ0oecDmaIZekZ3HAdvyaQxjtV")
     }
 
     override fun onDestroyView() {

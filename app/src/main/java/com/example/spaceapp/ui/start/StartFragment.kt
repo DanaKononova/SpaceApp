@@ -34,7 +34,6 @@ class StartFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val photoView = binding.DayPictureImg
 

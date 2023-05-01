@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_start"
         android:name="com.example.spaceapp.ui.start.StartFragment"
-        android:label="@string/title_home"
+        android:label="@string/navigation_start"
         tools:layout="@layout/fragment_start" />
 
     <fragment
         android:id="@+id/navigation_earth"
         android:name="com.example.spaceapp.ui.earth.EarthFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/navigation_earth"
         tools:layout="@layout/fragment_earth" />
 
     <fragment
         android:id="@+id/navigation_tracks"
         android:name="com.example.spaceapp.ui.tracks.TracksFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/navigation_tracks"
         tools:layout="@layout/fragment_tracks" />
 </navigation>

@@ -6,4 +6,8 @@ data class DateData(
     override fun toString(): String {
         return data
     }
+
+    fun toRequest(): List<String>{
+        return data.split("-")
+    }
 }

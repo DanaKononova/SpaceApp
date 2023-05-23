@@ -1,20 +1,19 @@
 package com.example.spaceapp.ui.earth
 
-import android.R
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.spaceapp.SpaceApp
 import com.example.spaceapp.databinding.FragmentEarthBinding
 import com.example.spaceapp.di.ViewModelFactory
 import com.example.spaceapp.domain.models.DateData
-import com.toptoche.searchablespinnerlibrary.SearchableListDialog
 import javax.inject.Inject
 
 class EarthFragment : Fragment() {
@@ -39,19 +38,39 @@ class EarthFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         val spinner = binding.dateSpinner
-        var items = listOf<DateData>()
-        var adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, items)
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-        spinner.setOnSearchTextChangedListener { text -> adapter.filter.filter(text) }
 
-        viewModel.datesLiveData.observe(viewLifecycleOwner){
-            items = it
-            adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, items)
-            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+        val items = mutableListOf<DateData>()
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        var selectedDate = DateData("")
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedDate = items[position] // Получить выбранный элемент из списка
+
+                // Выполнить запрос в ViewModel, передавая выбранный элемент
+                viewModel.getImageName(selectedDate.data)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Обработка события, когда ни один элемент не выбран
+            }
+        }
+
+        viewModel.imageNameLiveData.observe(viewLifecycleOwner) { name ->
+            Glide
+                .with(view)
+                .load("https://api.nasa.gov/EPIC/archive/enhanced/${selectedDate.toRequest()[0]}/${selectedDate.toRequest()[1]}/${selectedDate.toRequest()[2]}/png/${name.image}.png?api_key=quGv1lODdLOb0ylZ0oecDmaIZekZ3HAdvyaQxjtV")
+                .into(binding.EarthImg)
+
+        }
+
+        viewModel.datesLiveData.observe(viewLifecycleOwner) { dates ->
+            items.clear()
+            items.addAll(dates)
+            adapter.notifyDataSetChanged()
         }
         viewModel.getDates()
     }

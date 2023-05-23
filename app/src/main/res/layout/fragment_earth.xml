@@ -17,6 +17,13 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/EarthImg"
+            app:layout_constraintTop_toBottomOf="@id/dateSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/day_picture_tv" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

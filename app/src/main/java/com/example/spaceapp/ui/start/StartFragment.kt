@@ -1,6 +1,5 @@
 package com.example.spaceapp.ui.start
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.*
@@ -28,20 +27,19 @@ class StartFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val photoView = binding.DayPictureImg
 
         val attacher = PhotoViewAttacher(photoView)
         attacher.isZoomable = true
 
-        viewModel.dayPictureLiveData.observe(viewLifecycleOwner){
+        viewModel.dayPictureLiveData.observe(viewLifecycleOwner) {
             Glide
                 .with(view)
                 .load(it.url)

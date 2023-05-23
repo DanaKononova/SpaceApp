@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class StartViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: Repository,
 ) : ViewModel() {
 
     private val _dayPictureLiveData = MutableLiveData<DayPictureData>()

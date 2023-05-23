@@ -2,6 +2,7 @@ package com.example.spaceapp.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.example.spaceapp.di.ViewModelKey
+import com.example.spaceapp.ui.earth.EarthViewModel
 import com.example.spaceapp.ui.start.StartViewModel
 import dagger.Binds
 import dagger.Module
@@ -13,4 +14,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(StartViewModel::class)
     fun bindStartViewModel(viewModel: StartViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EarthViewModel::class)
+    fun bindEarthViewModel(viewModel: EarthViewModel): ViewModel
 }

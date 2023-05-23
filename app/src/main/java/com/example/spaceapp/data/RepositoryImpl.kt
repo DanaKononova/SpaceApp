@@ -18,8 +18,8 @@ class RepositoryImpl @Inject constructor(
     val dayResponseMapper: DayResponseMapper,
     val datesResponseMapper: DatesResponseMapper,
     val earthImageMapper: EarthImageMapper,
-    private val source: PreferencesSource
-): Repository{
+    private val source: PreferencesSource,
+) : Repository {
     override suspend fun getPictureOfDay(
     ): DayPictureData {
         return withContext(Dispatchers.IO) {

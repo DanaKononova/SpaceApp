@@ -31,7 +31,7 @@ class EarthFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentEarthBinding.inflate(inflater, container, false)
         return binding.root
@@ -47,15 +47,18 @@ class EarthFragment : Fragment() {
 
         var selectedDate = DateData("")
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedDate = items[position] // Получить выбранный элемент из списка
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long,
+            ) {
+                selectedDate = items[position]
 
-                // Выполнить запрос в ViewModel, передавая выбранный элемент
                 viewModel.getImageName(selectedDate.data)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Обработка события, когда ни один элемент не выбран
             }
         }
 

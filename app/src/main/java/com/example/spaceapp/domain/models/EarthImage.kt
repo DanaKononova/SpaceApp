@@ -1,5 +1,5 @@
 package com.example.spaceapp.domain.models
 
 data class EarthImage(
-    val image: String
+    val image: String,
 )

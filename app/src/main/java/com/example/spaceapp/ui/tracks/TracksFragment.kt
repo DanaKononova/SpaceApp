@@ -18,7 +18,7 @@ class TracksFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val tracksViewModel =
             ViewModelProvider(this).get(TracksViewModel::class.java)

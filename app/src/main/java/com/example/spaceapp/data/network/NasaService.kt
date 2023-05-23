@@ -10,12 +10,12 @@ import retrofit2.http.Query
 interface NasaService {
     @GET("/planetary/apod")
     suspend fun getDayPicture(
-        @Query("api_key") token: String
+        @Query("api_key") token: String,
     ): DayPictureResponse
 
     @GET("/EPIC/api/enhanced/all")
     suspend fun getDates(
-        @Query("api_key") token: String
+        @Query("api_key") token: String,
     ): List<DatesResponse>
 
     @GET("/EPIC/api/enhanced/date/{date}")

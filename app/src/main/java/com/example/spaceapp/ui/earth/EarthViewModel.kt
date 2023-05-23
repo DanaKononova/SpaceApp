@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class EarthViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: Repository,
 ) : ViewModel() {
 
     private val _datesLiveData = MutableLiveData<List<DateData>>()
@@ -26,7 +26,7 @@ class EarthViewModel @Inject constructor(
         }
     }
 
-    fun getImageName(date: String){
+    fun getImageName(date: String) {
         viewModelScope.launch() {
             _imageNameLiveData.value = repository.getImageName(date)
         }
